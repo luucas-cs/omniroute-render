@@ -18,18 +18,18 @@ jobs:
       - name: Buscar última versão oficial
         id: official_release
         run: |
-          LATEST=$(curl -sL https://api.github.com/repos/diegosouzapw/OmniRoute/releases/latest | grep '"tag_name":' | head -n 1 | sed -E 's/.*"([^"]+)".*/\1/')
+          LATEST=$(curl -sL https://api.github.com/repos/diegosouzapw/OmniRoute/releases/latest | grep '"tag_name":' | head -n 1 | sed -E 's/.*"([^"]+)".*/\1/' | sed 's/^v//')
           if [ -z "$LATEST" ] || [ "$LATEST" = "null" ]; then
             echo "Aviso: Não foi possível obter a tag da release oficial."
             exit 0
           fi
           echo "latest=$LATEST" >> $GITHUB_OUTPUT
-          echo "Última versão oficial encontrada: $LATEST"
+          echo "Última versão oficial no Docker Hub: $LATEST"
 
       - name: Verificar versão atual no Dockerfile
         id: current_version
         run: |
-          CURRENT=$(grep -oE 'diegosouzapw/omniroute:v[0-9.]+' Dockerfile | cut -d':' -f2)
+          CURRENT=$(grep -oE 'diegosouzapw/omniroute:[0-9.]+' Dockerfile | cut -d':' -f2)
           echo "current=$CURRENT" >> $GITHUB_OUTPUT
           echo "Versão atual configurada: $CURRENT"
 

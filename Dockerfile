@@ -1,4 +1,4 @@
-FROM diegosouzapw/omniroute:v3.8.50
+FROM diegosouzapw/omniroute:3.8.50
 
 # Instala o Litestream para streaming contínuo do SQLite para o Cloudflare R2
 ADD https://github.com/benbjohnson/litestream/releases/download/v0.3.13/litestream-v0.3.13-linux-amd64.tar.gz /tmp/litestream.tar.gz

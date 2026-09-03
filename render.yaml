@@ -4,3 +4,11 @@ services:
     runtime: docker
     plan: free
     region: oregon
+    domains:
+      - omniroute.lucascs.cloud
+    renderSubdomainPolicy: disabled
+    envVars:
+      - key: OMNIROUTE_ENABLE_LIVE_WS
+        value: "false"
+      - key: NEXT_PUBLIC_BASE_URL
+        value: "https://omniroute.lucascs.cloud"
